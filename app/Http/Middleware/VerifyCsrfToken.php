@@ -14,5 +14,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
        'admin/manufactor/update',
        'admin/manufactor/delete',
+       'admin/product/update',
+       'admin/product/delete',
     ];
 }

@@ -78,10 +78,10 @@ $(function () {
            
             var aData = oTable.fnGetData(nRow);
             var name = aData[0];
-            var info = aData[1];
-            var rrc = aData[2];
-            var nds = aData[3];
-            var bonus = aData[4].value;
+            var brand = aData[1];
+            var manufac_price = aData[2];
+            var kaspi_price = aData[3];
+            var manufactorId = aData[4].value;
 
             $.ajax({
                     type: "POST",

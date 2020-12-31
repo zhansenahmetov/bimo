@@ -33,6 +33,7 @@ class AdminController extends Controller
     public function update_product(Request $request){
 
         $product = Product::where('name',$request->name)->first();
+        
         if ($product) {
 
             $product->brand = $request->brand;
@@ -49,11 +50,15 @@ class AdminController extends Controller
             $product->manufac_price = $request->manufac_price;
             $product->kaspi_price = $request->kaspi_price;
             $product->manufactorId = $request->manufactorId;
+            $product->id=$request->kaspi_price+$request->manufactorId;
+            $product->sku=$request->kaspi_price+$request->manufactorId;
+
             $product->save();
 
         }
 
     }
+
     public function delete_product(Request $request) 
     {
         $product = Product::where('name',$request->name)->first(); 
