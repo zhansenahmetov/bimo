@@ -29,7 +29,8 @@ Route::middleware(['admin'])->prefix('admin')->group(function (){
     // admin_action
     Route::post('/manufactor/update', [AdminController::class, 'update_manufactor'])->name('update_manufactor_admin');
     Route::post('/manufactor/delete',[AdminController::class, 'delete_manufactor'])->name('delete_manufactor_admin');
-
+    Route::post('/product/update', [AdminController::class, 'update_product'])->name('update_product_admin');
+    Route::post('/product/delete',[AdminController::class, 'delete_product'])->name('delete_product_admin');
 
 
     // admin_action_end

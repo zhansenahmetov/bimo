@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('sku');
             $table->string('name');
+            $table->string('brand');
             $table->string('img')->nullable();
             $table->integer('manufac_price');
             $table->integer('kaspi_price');

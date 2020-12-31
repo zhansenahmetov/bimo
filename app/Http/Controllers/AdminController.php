@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 use App\Model\User;
 use App\Model\Manufactor;
-
+use App\Model\Product;
 
 class AdminController extends Controller
 {
@@ -25,10 +25,41 @@ class AdminController extends Controller
     }
 
     public function show_products(){
-
-        return view('admin.products');
+        $products = Product::all();
+        return view('admin.products',compact('products'));
 
     }
+
+    public function update_product(Request $request){
+
+        $product = Product::where('name',$request->name)->first();
+        if ($product) {
+
+            $product->brand = $request->brand;
+            $product->manufac_price = $request->manufac_price;
+            $product->kaspi_price = $request->kaspi_price;
+            $product->manufactorId = $request->manufactorId;
+
+            $product->update();
+        
+        }else{
+            $product = new Product();
+            $product->name = $request->name;
+            $product->brand = $request->brand;
+            $product->manufac_price = $request->manufac_price;
+            $product->kaspi_price = $request->kaspi_price;
+            $product->manufactorId = $request->manufactorId;
+            $product->save();
+
+        }
+
+    }
+    public function delete_product(Request $request) 
+    {
+        $product = Product::where('name',$request->name)->first(); 
+        $product->delete(); //delete the client
+    }
+
 
     public function show_manufactors(){
 

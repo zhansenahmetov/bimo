@@ -14,6 +14,7 @@
               </ol>
             </div>
           </div>
+          
           <div class="row">
             <div class="col-lg-12 portlets">
               <div class="panel">
@@ -31,21 +32,44 @@
                     <thead>
                       <tr>
                         <th>Имя поставщика</th>
-                        <th>Контакты</th>
-                        <th>РРЦ</th>
-                        <th>НДС</th>
-                        
+                        <th>Бренд</th>
+                        <th>Цена производителя</th>
+                        <th>Цена каспи</th>
+                        <th>Производитель</th>
                         <th class="text-right">Действие</th>
                       </tr>
                     </thead>
                     <tbody>
-                    
+                       @if(count($products) !=0)
+                       @foreach($products as $product)
+                        <tr>
+                          <td>{{$product->name}}</td>
+                          <td>
+                            @if($product->brand)
+                              {{$product->brand}}
+                            @else
+                              Нету информаций
+                            @endif
+                            
+                          </td>
+                          <td>{{$product->manufac_price}}</td>
+                          <td>{{$product->kaspi_price}}</td>
+                         <td>{{$product->manufactorId}}</td> 
+                         
+                          <td class="text-right"><a class="edit btn btn-sm btn-default" href="javascript:;"><i class="icon-note"></i></a>  <a class="delete btn btn-sm btn-danger" href="javascript:;"><i class="icons-office-52"></i></a>
+                          </td>
+                        </tr>
+                      @endforeach
+                      @else
+                      <p>В базе поставщиков не найдено.</p>
+                      @endif
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
           </div>
+
           <div class="footer">
             <div class="copyright">
               <p class="pull-left sm-pull-reset">
