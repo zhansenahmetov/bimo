@@ -45,7 +45,7 @@ class AdminController extends Controller
             $manufactor->info = $request->info;
             $manufactor->rrc = $request->rrc;
             $manufactor->nds = $request->nds;
-            // $manufactor->bonus = $request->bonus;
+            $manufactor->bonus = $request->bonus;
 
             $manufactor->update();
         

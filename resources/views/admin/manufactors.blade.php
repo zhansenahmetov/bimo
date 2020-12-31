@@ -34,7 +34,7 @@
                         <th>Контакты</th>
                         <th>РРЦ</th>
                         <th>НДС</th>
-                        <!-- <th>Бонус</th> -->
+                        <th>Бонус</th>
                         <th class="text-right">Действие</th>
                       </tr>
                     </thead>
@@ -53,7 +53,7 @@
                           </td>
                           <td>{{$manufactor->rrc}}</td>
                           <td>{{$manufactor->nds}}</td>
-                         <!--  <td>{{$manufactor->bonus}}</td> -->
+                         <td>{{$manufactor->bonus}}</td> 
                          
                           <td class="text-right"><a class="edit btn btn-sm btn-default" href="javascript:;"><i class="icon-note"></i></a>  <a class="delete btn btn-sm btn-danger" href="javascript:;"><i class="icons-office-52"></i></a>
                           </td>

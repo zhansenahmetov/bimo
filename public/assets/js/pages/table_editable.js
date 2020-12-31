@@ -8,6 +8,7 @@ $(function () {
 
             for (var i = 0, iLen = jqTds.length; i < iLen; i++) {
                 oTable.fnUpdate(aData[i], nRow, i, false);
+                console.log(i);
             }
             oTable.fnDraw();
         }
@@ -15,12 +16,14 @@ $(function () {
           
             var aData = oTable.fnGetData(nRow);
             var jqTds = $('>td', nRow);
+            console.log(jqTds.length);
+            console.log(aData.length);
             jqTds[0].innerHTML = '<input type="text" id="name" class="form-control small" value="' + aData[0] + ' ">';
             jqTds[1].innerHTML = '<input type="text" id="info" class="form-control small" value="' + aData[1] + '">';
             jqTds[2].innerHTML = '<input type="number" id="rrc" class="form-control small" value="' + aData[2] + '">';
             jqTds[3].innerHTML = '<input type="number" id="nds" class="form-control small" value="' + aData[3] + '">';
-            // jqTds[4].innerHTML = '<input type="number" id="bonus" class="form-control small" value="' + aData[4] + '">';
-            jqTds[4].innerHTML = '<div class="text-right"><a class="edit btn btn-sm btn-success" href=""><i class="fa fa-save"></i></a> <a class="delete btn btn-sm btn-danger" href=""><i class="icons-office-52"></i></a></div>';
+            jqTds[4].innerHTML = '<input type="number" id="bonus" class="form-control small" value="' + aData[4] + '">';
+            jqTds[5].innerHTML = '<div class="text-right"><a class="edit btn btn-sm btn-success" href=""><i class="fa fa-save"></i></a> <a class="delete btn btn-sm btn-danger" href=""><i class="icons-office-52"></i></a></div>';
         }
 
         function editRow(oTable, nRow) {
@@ -31,8 +34,8 @@ $(function () {
             jqTds[1].innerHTML = '<input type="text" id="info" class="form-control small" value="' + aData[1] + '">';
             jqTds[2].innerHTML = '<input type="number" id="rrc" class="form-control small" value="' + aData[2] + '">';
             jqTds[3].innerHTML = '<input type="number" id="nds" class="form-control small" value="' + aData[3] + '">';
-            // jqTds[4].innerHTML = '<input type="number" id="bonus" class="form-control small" value="' + aData[4] + '">';
-            jqTds[4].innerHTML = '<div class="text-right"><a class="edit btn btn-sm btn-success" href=""><i class="fa fa-save"></i></a> <a class="delete btn btn-sm btn-danger" href=""><i class="icons-office-52"></i></a></div>';
+            jqTds[4].innerHTML = '<input type="number" id="bonus" class="form-control small" value="' + aData[4] + '">';
+            jqTds[5].innerHTML = '<div class="text-right"><a class="edit btn btn-sm btn-success" href=""><i class="fa fa-save"></i></a> <a class="delete btn btn-sm btn-danger" href=""><i class="icons-office-52"></i></a></div>';
         }
 
         function saveRow(oTable, nRow) {
@@ -42,14 +45,14 @@ $(function () {
             oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
             oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
             oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-            // oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
-            oTable.fnUpdate('<div class="text-right"><a class="edit btn btn-sm btn-default" href=""><i class="icon-note"></i></a> <a class="delete btn btn-sm btn-danger" href=""><i class="icons-office-52"></i></a></div>', nRow, 4, false);
+            oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
+            oTable.fnUpdate('<div class="text-right"><a class="edit btn btn-sm btn-default" href=""><i class="icon-note"></i></a> <a class="delete btn btn-sm btn-danger" href=""><i class="icons-office-52"></i></a></div>', nRow, 5, false);
           
             var name = jqInputs[0].value;
             var info = jqInputs[1].value;
             var rrc = jqInputs[2].value;
             var nds = jqInputs[3].value;
-            // var bonus = jqInputs[4].value;
+            var bonus = jqInputs[4].value;
 
             $.ajax({
                     type: "POST",
@@ -59,8 +62,8 @@ $(function () {
                          name: name,
                          info: info,
                          rrc: rrc,
-                         nds: nds
-                         // bonus,bonus
+                         nds: nds,
+                         bonus: bonus
                         
                     },
                     success: function(html) {
@@ -78,7 +81,7 @@ $(function () {
             var info = aData[1];
             var rrc = aData[2];
             var nds = aData[3];
-            // var bonus = jqInputs[4].value;
+            var bonus = aData[4].value;
 
             $.ajax({
                     type: "POST",
@@ -88,8 +91,8 @@ $(function () {
                          name: name,
                          info: info,
                          rrc: rrc,
-                         nds: nds
-                         // bonus,bonus
+                         nds: nds,
+                         bonus: bonus
                         
                     },
                     success: function(html) {
@@ -109,8 +112,8 @@ $(function () {
             oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
             oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
             oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-            // oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
-            oTable.fnUpdate('<a class="edit btn btn-sm btn-default" href=""><i class="icon-note"></i></a>', nRow, 4, false);
+            oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
+            oTable.fnUpdate('<a class="edit btn btn-sm btn-default" href=""><i class="icon-note"></i></a>', nRow, 5, false);
             oTable.fnDraw();
         }
 
@@ -125,20 +128,20 @@ $(function () {
                 "aButtons":[
                     {
                         "sExtends":"pdf",
-                        "mColumns":[0, 1, 2, 3],
+                        "mColumns":[0, 1, 2, 3, 4],
                         "sPdfOrientation":"landscape"
                     },
                     {
                         "sExtends":"print",
-                        "mColumns":[0, 1, 2, 3],
+                        "mColumns":[0, 1, 2, 3, 4],
                         "sPdfOrientation":"landscape"
                     },{
                         "sExtends":"xls",
-                        "mColumns":[0, 1, 2, 3],
+                        "mColumns":[0, 1, 2, 3, 4],
                         "sPdfOrientation":"landscape"
                     },{
                         "sExtends":"csv",
-                        "mColumns":[0, 1, 2, 3],
+                        "mColumns":[0, 1, 2, 3, 4],
                         "sPdfOrientation":"landscape"
                     }
                 ]
@@ -169,7 +172,7 @@ $(function () {
 
         $('#table-edit_new').click(function (e) {
             e.preventDefault();
-            var aiNew = oTable.fnAddData(['', '', '', '',
+            var aiNew = oTable.fnAddData(['', '', '', '','',
                     '<p class="text-center"><a class="edit btn btn-dark" href=""><i class="fa fa-pencil-square-o"></i>Edit</a> <a class="delete btn btn-danger" href=""><i class="fa fa-times-circle"></i> Remove</a></p>'
             ]);
             var nRow = oTable.fnGetNodes(aiNew[0]);
@@ -179,7 +182,7 @@ $(function () {
 
          $('#table-add_new').click(function (e) {
             e.preventDefault();
-            var aiNew = oTable.fnAddData(['', '', '', '',
+            var aiNew = oTable.fnAddData(['', '', '', '','',
                     '<p class="text-center"><a class="edit btn btn-dark" href=""><i class="fa fa-pencil-square-o"></i>Edit</a> <a class="delete btn btn-danger" href=""><i class="fa fa-times-circle"></i> Remove</a></p>'
             ]);
             var nRow = oTable.fnGetNodes(aiNew[0]);
