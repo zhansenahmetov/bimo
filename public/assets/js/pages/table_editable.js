@@ -68,7 +68,40 @@ $(function () {
                           oTable.fnDraw();
                     }
                 });
+
+                
         }
+        function deleteRow(oTable, nRow) {
+           
+            var aData = oTable.fnGetData(nRow);
+            var name = aData[0];
+            var info = aData[1];
+            var rrc = aData[2];
+            var nds = aData[3];
+            // var bonus = jqInputs[4].value;
+
+            $.ajax({
+                    type: "POST",
+                    url: "manufactor/delete",
+
+                    data: {
+                         name: name,
+                         info: info,
+                         rrc: rrc,
+                         nds: nds
+                         // bonus,bonus
+                        
+                    },
+                    success: function(html) {
+                         
+                          oTable.fnDraw();
+                    }
+                });
+
+                
+        }
+
+
 
         function cancelEditRow(oTable, nRow) {
             var jqInputs = $('input', nRow);
@@ -156,11 +189,14 @@ $(function () {
 
         $('#table-editable a.delete').live('click', function (e) {
             e.preventDefault();
-            if (confirm("Are you sure to delete this row ?") == false) {
+            if (confirm("che?") == false) {
                 return;
             }
             var nRow = $(this).parents('tr')[0];
+            deleteRow(oTable, nRow);
             oTable.fnDeleteRow(nRow);
+            
+            console.log("deleted");
             // alert("Deleted! Do not forget to do some ajax to sync with backend :)");
         });
 
@@ -184,7 +220,8 @@ $(function () {
                 restoreRow(oTable, nEditing);
                 editRow(oTable, nRow);
                 nEditing = nRow;
-            } else if (nEditing == nRow && this.innerHTML == "Save") {
+            }
+            if (nEditing == nRow&&confirm("Are you sure to delete this row ?") == true) {
                  /* This row is being edited and should be saved */
                 saveRow(oTable, nEditing);
                 nEditing = null;

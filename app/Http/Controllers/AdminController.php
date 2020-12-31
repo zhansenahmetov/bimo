@@ -39,7 +39,7 @@ class AdminController extends Controller
 
     public function update_manufactor(Request $request){
 
-        $manufactor = Manufactor::where('name',$request->name)->orderBy('desc')->first();
+        $manufactor = Manufactor::where('name',$request->name)->first();
         if ($manufactor) {
 
             $manufactor->info = $request->info;
@@ -47,7 +47,7 @@ class AdminController extends Controller
             $manufactor->nds = $request->nds;
             // $manufactor->bonus = $request->bonus;
 
-            $manufactor->save();
+            $manufactor->update();
         
         }else{
             $manufactor = new Manufactor();
@@ -62,6 +62,13 @@ class AdminController extends Controller
         }
 
     }
+    public function delete_manufactor(Request $request) 
+    {
+        $manufactor = Manufactor::where('name',$request->name)->first(); 
+        $manufactor->delete(); //delete the client
+    }
+
+
 
     public function show_orders(){
 
