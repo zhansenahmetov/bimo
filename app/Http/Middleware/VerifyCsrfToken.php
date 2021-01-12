@@ -16,5 +16,6 @@ class VerifyCsrfToken extends Middleware
        'admin/manufactor/delete',
        'admin/product/update',
        'admin/product/delete',
+       'admin/products/upload/check',
     ];
 }
