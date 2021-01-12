@@ -26,7 +26,8 @@ class AdminController extends Controller
 
     public function show_products(){
         $products = Product::all();
-        return view('admin.products',compact('products'));
+        $manufactors = Manufactor::all();
+        return view('admin.products',compact('products','manufactors'));
 
     }
 
