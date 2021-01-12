@@ -415,7 +415,9 @@
     <!-- BEGIN PAGE SCRIPTS -->
     <script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script> <!-- Tables Filtering, Sorting & Editing -->
     <script src="/assets/js/pages/table_editable2.js"></script>
+  
     <!-- END PAGE SCRIPTS -->
+
     @else
     <script src="/assets/plugins/jquery/jquery-1.11.1.min.js"></script>
     <script src="/assets/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>
@@ -461,6 +463,6 @@
 
     @endif
 
-
+    <script src="/assets/js/custom.js"></script>
   </body>
 </html>
